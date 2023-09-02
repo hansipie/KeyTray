@@ -4,8 +4,8 @@ from PyQt5.QtCore import pyqtSignal
 
 numlock_status = False
 keysignal = pyqtSignal(str)
-msg_on = "Num Lock on."
-msg_off = "Num Lock off."
+msg_on = "Num Lock is ON."
+msg_off = "Num Lock is OFF."
 
 def emit_message():
     if numlock_status:
