@@ -17,9 +17,9 @@ def set_icon(text):
 
 def show_message(text):
     if text == "on":
-        tray.showMessage("KeyTray", pk.msg_on, msecs=1000)
+        tray.showMessage("KeyTray", pk.msg_on, QIcon("resources/active.png"), msecs=1000)
     else:
-        tray.showMessage("KeyTray", pk.msg_off, msecs=1000)
+        tray.showMessage("KeyTray", pk.msg_off, QIcon("resources/inactive.png"), msecs=1000)
 
 app = QApplication(sys.argv)
 
