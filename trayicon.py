@@ -4,17 +4,22 @@ from PyQt5.QtCore import QThread, pyqtSignal
 import sys
 import presskey as pk
 
-class MyThread(QThread):
+class KeyThread(QThread):
     thread_signal = pyqtSignal(str)
-
     def run(self):
         pk.run(self.thread_signal)
 
 def set_icon(text):
-    if text == "active":
+    if text == "on":
         tray.setIcon(QIcon("resources/active.png"))
     else:
         tray.setIcon(QIcon("resources/inactive.png"))
+
+def show_message(text):
+    if text == "on":
+        tray.showMessage("KeyTray", pk.msg_on, msecs=1000)
+    else:
+        tray.showMessage("KeyTray", pk.msg_off, msecs=1000)
 
 app = QApplication(sys.argv)
 
@@ -36,8 +41,9 @@ menu.addAction(exit_action)
 tray.setContextMenu(menu)
 
 # Create the thread
-my_thread = MyThread()
-my_thread.thread_signal.connect(set_icon)
-my_thread.start()
+enginethread = KeyThread()
+enginethread.thread_signal.connect(set_icon)
+enginethread.thread_signal.connect(show_message)
+enginethread.start()
 
 sys.exit(app.exec_())
