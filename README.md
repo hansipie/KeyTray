@@ -1,44 +1,44 @@
-# KeyTray
+# KeyTray 🌐
 
 ## Overview
 
-KeyTray is a utility designed to manage your keyboard shortcuts and hotkeys in a simple and intuitive way. With KeyTray, you can easily configure, organize, and activate your shortcuts, making your workflow more efficient.
+`KeyTray` is a small utility tool designed to help you keep track of your keyboard's Num Lock state. The application resides in your system tray and allows you to easily see whether Num Lock is active or not. No more awkward number typing mishaps!
+
+![Screenshot of KeyTray](screenshot.png)
 
 ## Features
 
-- **Easy Configuration**: Set up your hotkeys with a user-friendly interface.
-- **Custom Profiles**: Create custom profiles for different applications or tasks.
-- **Cross-Platform**: Works on Windows, macOS, and Linux.
-- **Lightweight**: Minimal impact on system resources.
+- Real-time Num Lock state tracking
+- Simple and lightweight
+- Cross-platform support (coming soon)
+- Easy-to-understand UI
+- Option to auto-start with the system (coming soon)
 
 ## Installation
 
 ### Windows
 
-1. Download the latest release from the [Releases](https://github.com/hansipie/KeyTray/releases) page.
-2. Run the installer and follow the on-screen instructions.
+### Linux
 
-### macOS and Linux
+_Liunx is not supported at this time._
 
-1. Clone the repository: `git clone https://github.com/hansipie/KeyTray.git`
-2. Navigate to the project directory: `cd KeyTray`
-3. Run the installation script: `./install.sh`
+### macOS
+
+_MacOS is not supported at this time._
 
 ## Usage
 
-1. Open KeyTray from the system tray or start menu.
-2. Add or edit hotkeys as needed.
-3. Save your configuration.
-4. Activate the hotkeys by selecting the appropriate profile.
+After installation, `KeyTray` will automatically appear in your system tray.
+
+- **Green icon**: Num Lock is ON
+- **Red icon**: Num Lock is OFF
+
+To close the application, right-click on the system tray icon and select "Exit".
 
 ## Contributing
 
-We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) for more details.
+We welcome contributions! Please see the `CONTRIBUTING.md` file for details on how to get involved.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
-
-## Support
-
-For support, please open an issue on GitHub or contact us directly at support@keytray.com.
+This project is licensed under the MIT License. See the `LICENSE.md` file for details.
