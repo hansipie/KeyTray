@@ -14,9 +14,11 @@
 - Easy-to-understand UI
 - Option to auto-start with the system (coming soon)
 
-## Installation
+## Launch
 
 ### Windows
+
+Can be launched with the command "start pythonw App.py" or with the batch file "KeyTray.bat"
 
 ### Linux
 
