@@ -6,7 +6,7 @@ import socket
 import sys
 import App
 
-class MyService(win32serviceutil.ServiceFramework):
+class KeyTrayService(win32serviceutil.ServiceFramework):
     _svc_name_ = 'KeyTray'
     _svc_display_name_ = 'KeyTray'
     _svc_description_ = 'Displays the status of the NumLock key in the system tray'

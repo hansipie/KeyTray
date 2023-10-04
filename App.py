@@ -1,13 +1,57 @@
+import sys
+import ctypes
 from PyQt5.QtWidgets import QSystemTrayIcon, QMenu, QAction, QApplication, QLabel
 from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import QThread, pyqtSignal
-import sys
-import presskey as pk
+from pynput import keyboard
+
+################### Key Monitoring ###################
+
+numlock_status = False
+keysignal = pyqtSignal(str)
+msg_on = "Num Lock is ON."
+msg_off = "Num Lock is OFF."
+
+def emit_message():
+    if numlock_status:
+        print(msg_on)
+        keysignal.emit("on")
+    else:
+        print(msg_off)
+        keysignal.emit("off")
+
+def check_numlock():
+    hllDll = ctypes.WinDLL ("User32.dll")
+    VK_NUMLOCK = 0x90
+    return hllDll.GetKeyState(VK_NUMLOCK)
+
+def on_press(key):
+    global numlock_status  # Declare 'lock' as global variable
+    try:
+        if key == keyboard.Key.num_lock:
+            print('Num Lock Key Pressed')
+            numlock_status = not numlock_status
+            emit_message()
+    except AttributeError:
+        pass
+
+def runkeymon(thread_signal):
+    global numlock_status
+    numlock_status = check_numlock()
+    global keysignal
+    keysignal = thread_signal
+    emit_message()
+    with keyboard.Listener(on_press=on_press) as listener:
+        listener.join()
+
+################### Key Thread ###################
 
 class KeyThread(QThread):
     thread_signal = pyqtSignal(str)
     def run(self):
-        pk.run(self.thread_signal)
+        runkeymon(self.thread_signal)
+
+###################################################
 
 def set_icon(text):
     if text == "on":
@@ -17,18 +61,15 @@ def set_icon(text):
 
 def show_message(text):
     if text == "on":
-        tray.showMessage("KeyTray", pk.msg_on, QIcon("resources/active.png"), msecs=1000)
+        tray.showMessage("KeyTray", msg_on, QIcon("resources/active.png"), msecs=500)
     else:
-        tray.showMessage("KeyTray", pk.msg_off, QIcon("resources/inactive.png"), msecs=1000)
+        tray.showMessage("KeyTray", msg_off, QIcon("resources/inactive.png"), msecs=500)
 
 app = QApplication(sys.argv)
 
-# Create the icon
-icon = QIcon("resources/unknown.png")
-
 # Create the tray
 tray = QSystemTrayIcon()
-tray.setIcon(icon)
+tray.setIcon(QIcon("resources/active.png"))
 tray.setVisible(True)
 
 # Create the menu
