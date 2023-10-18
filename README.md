@@ -18,7 +18,13 @@
 
 ### Windows
 
-Can be launched with the command "start pythonw App.py" or with the batch file "KeyTray.bat"
+Launch the application with the following command:
+
+    pythonw app.py
+
+NB: pythonw is used to launch the application in the background. If you want to see the console output, use python instead.
+
+NB: Use NSSM to launch the application as a service.
 
 ### Linux
 

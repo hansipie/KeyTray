@@ -65,6 +65,7 @@ def show_message(text):
     else:
         tray.showMessage("KeyTray", msg_off, QIcon("resources/inactive.png"), msecs=500)
 
+
 app = QApplication(sys.argv)
 
 # Create the tray
