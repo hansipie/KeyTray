@@ -56,15 +56,15 @@ class KeyThread(QThread):
 
 def set_icon(text):
     if text == "on":
-        tray.setIcon(QIcon(os.path.join(basedir, "resources/active.png")))
+        tray.setIcon(QIcon(os.path.join(basedir, "resources/active.ico")))
     else:
-        tray.setIcon(QIcon(os.path.join(basedir, "resources/inactive.png")))
+        tray.setIcon(QIcon(os.path.join(basedir, "resources/inactive.ico")))
 
 def show_message(text):
     if text == "on":
-        tray.showMessage("KeyTray", msg_on, QIcon(os.path.join(basedir, "resources/active.png")), msecs=500)
+        tray.showMessage("KeyTray", msg_on, QIcon(os.path.join(basedir, "resources/active.ico")), msecs=500)
     else:
-        tray.showMessage("KeyTray", msg_off, QIcon(os.path.join(basedir, "resources/inactive.png")), msecs=500)
+        tray.showMessage("KeyTray", msg_off, QIcon(os.path.join(basedir, "resources/inactive.ico")), msecs=500)
 
 
 if __name__ == "__main__":
@@ -72,7 +72,7 @@ if __name__ == "__main__":
 
     # Create the tray
     tray = QSystemTrayIcon()
-    tray.setIcon(QIcon(os.path.join(basedir, "resources/active.png")))
+    tray.setIcon(QIcon(os.path.join(basedir, "resources/active.ico")))
     tray.setVisible(True)
 
     # Create the menu
