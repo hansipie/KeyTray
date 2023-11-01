@@ -1,4 +1,4 @@
-import sys
+import sys, os
 import ctypes
 from PyQt5.QtWidgets import QSystemTrayIcon, QMenu, QAction, QApplication, QLabel
 from PyQt5.QtGui import QIcon
@@ -7,6 +7,7 @@ from pynput import keyboard
 
 ################### Key Monitoring ###################
 
+basedir = os.path.dirname(__file__)
 numlock_status = False
 keysignal = pyqtSignal(str)
 msg_on = "Num Lock is ON."
@@ -55,37 +56,38 @@ class KeyThread(QThread):
 
 def set_icon(text):
     if text == "on":
-        tray.setIcon(QIcon("resources/active.png"))
+        tray.setIcon(QIcon(os.path.join(basedir, "resources/active.png")))
     else:
-        tray.setIcon(QIcon("resources/inactive.png"))
+        tray.setIcon(QIcon(os.path.join(basedir, "resources/inactive.png")))
 
 def show_message(text):
     if text == "on":
-        tray.showMessage("KeyTray", msg_on, QIcon("resources/active.png"), msecs=500)
+        tray.showMessage("KeyTray", msg_on, QIcon(os.path.join(basedir, "resources/active.png")), msecs=500)
     else:
-        tray.showMessage("KeyTray", msg_off, QIcon("resources/inactive.png"), msecs=500)
+        tray.showMessage("KeyTray", msg_off, QIcon(os.path.join(basedir, "resources/inactive.png")), msecs=500)
 
 
-app = QApplication(sys.argv)
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
 
-# Create the tray
-tray = QSystemTrayIcon()
-tray.setIcon(QIcon("resources/active.png"))
-tray.setVisible(True)
+    # Create the tray
+    tray = QSystemTrayIcon()
+    tray.setIcon(QIcon(os.path.join(basedir, "resources/active.png")))
+    tray.setVisible(True)
 
-# Create the menu
-menu = QMenu()
-exit_action = QAction("Exit")
-exit_action.triggered.connect(app.exit)
-menu.addAction(exit_action)
+    # Create the menu
+    menu = QMenu()
+    exit_action = QAction("Exit")
+    exit_action.triggered.connect(app.exit)
+    menu.addAction(exit_action)
 
-# Add the menu to the tray
-tray.setContextMenu(menu)
+    # Add the menu to the tray
+    tray.setContextMenu(menu)
 
-# Create the thread
-enginethread = KeyThread()
-enginethread.thread_signal.connect(set_icon)
-enginethread.thread_signal.connect(show_message)
-enginethread.start()
+    # Create the thread
+    enginethread = KeyThread()
+    enginethread.thread_signal.connect(set_icon)
+    enginethread.thread_signal.connect(show_message)
+    enginethread.start()
 
-sys.exit(app.exec_())
+    sys.exit(app.exec_())
