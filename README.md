@@ -1,4 +1,5 @@
-# KeyTray 🌐
+![Icon of KeyTray](resources/active.png) 
+# KeyTray
 
 ## Overview
 
