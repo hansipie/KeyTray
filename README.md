@@ -10,13 +10,9 @@
 
 - Real-time Num Lock state tracking
 - Simple and lightweight
-- Cross-platform support (coming soon)
 - Easy-to-understand UI
-- Option to auto-start with the system (coming soon)
 
 ## Launch
-
-### Windows
 
 Launch the application with the following command:
 
@@ -24,15 +20,11 @@ Launch the application with the following command:
 
 NB: pythonw is used to launch the application in the background. If you want to see the console output, use python instead.
 
+NB: Use pyinstaller to create a standalone executable.
+    
+    pyinstaller --windowed --onefile --icon=resources/active.ico --add-data resources/*.ico:resources KeyTray.py
+
 NB: Use NSSM to launch the application as a service.
-
-### Linux
-
-_Liunx is not supported at this time._
-
-### macOS
-
-_MacOS is not supported at this time._
 
 ## Usage
 
