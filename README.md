@@ -29,7 +29,7 @@ NB: Use NSSM to launch the application as a service.
 
 ## Usage
 
-After installation, `KeyTray` will automatically appear in your system tray.
+After launch, `KeyTray` will automatically appear in your system tray.
 
 - **Green icon**: Num Lock is ON
 - **Red icon**: Num Lock is OFF
